@@ -2,28 +2,28 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: '{{ .Values.appName }}-deploy'
-  namespace: { { .Values.namespace } }
+  namespace: '{{ .Values.namespace }}'
   labels:
-    app: { { .Values.appName } }
+    app: '{{ .Values.appName }}'
 spec:
-  replicas: { { .Values.replicaCount } }
+  replicas: '{{ .Values.replicaCount }}'
   selector:
     matchLabels:
-      app: { { .Values.appName } }
+      app: '{{ .Values.appName }}'
       tier: frontend
   template:
     metadata:
       labels:
-        app: { { .Values.appName } }
+        app: '{{ .Values.appName }}'
         tier: frontend
     spec:
       containers:
-        - name: { { .Chart.Name } }
+        - name: '{{ .Chart.Name }}'
           image: '{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}'
-          imagePullPolicy: { { .Values.image.pullPolicy } }
+          imagePullPolicy: '{{ .Values.image.pullPolicy }}'
           ports:
             - name: http
-              containerPort: { { .Values.service.port } }
+              containerPort: '{{ .Values.service.port }}'
               protocol: TCP
           livenessProbe:
             httpGet:
