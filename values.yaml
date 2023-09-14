@@ -9,11 +9,12 @@ replicaCount: 2
 image:
   name: theinhtut/vite-react-app
   pullPolicy: IfNotPresent
-  tag: "sha-370ee2a"
+  tag: "latest"
 
 service:
-  type: ClusterIP
+  type: LoadBalancer
   port: 3000
+  targetPort: 3000
 
 # imagePullSecrets: []
 # nameOverride: ""
