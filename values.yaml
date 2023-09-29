@@ -4,7 +4,7 @@
 
 appName: vite-react-app
 namespace: thein
-replicaCount: 1
+replicaCount: 3
 
 image:
   name: theinhtut/vite-react-app
